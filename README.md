@@ -7,6 +7,11 @@
 - Webpack 前端资源加载/打包工具，满足前端工程化需要
 - antd-react 使用 Ant Design UI 库的 React 实现
 
+# [在我的 Blog 中查看笔记](https://drkbl.com/react-hello-world/)
+
+# [在线 Demo]()
+
+
 # 运行指南
 
 ```
@@ -17,6 +22,9 @@ $ npm run test
 ```
 
 ## 已知问题
+
+### npm i 卡死
+
 `$ npm i` 这步可能会卡在 `extract:webpack-dev-server: sill doParallel extract 589` 这里，这个问题已经被 Node Issue 了 https://github.com/npm/npm/issues/13782
 
 解决办法，单独安装 webpack ， webpack-dev-server ， babel-cli ， babel-loader
@@ -31,9 +39,17 @@ npm i babel-loader
 npm i
 ```
 
-可以解决，原因未知。
+### webpack-dev-server can't be accessed via IP
 
-# [在我的 Blog 查看完整介绍](https://drkbl.com/react-hello-world/)
+[github issue](https://github.com/webpack/webpack-dev-server/issues/147)
+webpack-dev-server 打开的 server 无法被远程通过 IP 访问，原因是 webpack-dev-server 默认关闭了这个功能。通过加参数 `--host 0.0.0.0` 可以开启，
+
+```
+# package.json
+"test": "webpack-dev-server --host 0.0.0.0 --progress --colors --content-base build/",
+...
+```
+
 
 # React
 
@@ -356,9 +372,11 @@ var HelloMessage = React.createClass({
 ---
 # Reference
 - [Babel 入门 - 阮一峰](http://www.ruanyifeng.com/blog/2016/01/babel.html)
+- [React 入门实例教程 - 阮一峰](http://www.ruanyifeng.com/blog/2015/03/react.html)
+- [ruanyf/webpack-demos](https://github.com/ruanyf/webpack-demos) Webpack 的 16 个 Demo
+- [ruanyf/react-babel-webpack-boilerplate](https://github.com/ruanyf/react-babel-webpack-boilerplate) 样板，支持更丰富的特性
 - [npm scripts 使用指南](http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html)
 - [Webpack Getting-started](http://webpack.github.io/docs/tutorials/getting-started/)
 - [ruanyf/webpack-demos](https://github.com/ruanyf/webpack-demos)
 - [Ant Design of React](https://ant.design/docs/react/introduce-cn)
-- []http://www.ruanyifeng.com/blog/2015/03/react.html
 - [Moment.js](http://momentjs.com)
