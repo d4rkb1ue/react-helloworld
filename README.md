@@ -16,6 +16,23 @@ $ npm i
 $ npm run test
 ```
 
+## 已知问题
+`$ npm i` 这步可能会卡在 `extract:webpack-dev-server: sill doParallel extract 589` 这里，这个问题已经被 Node Issue 了 https://github.com/npm/npm/issues/13782
+
+解决办法，单独安装 webpack ， webpack-dev-server ， babel-cli ， babel-loader
+```
+$
+rm -rf node_modules/
+npm cache clear
+npm i webpack
+npm i webpack-dev-server
+npm i babel-cli
+npm i babel-loader
+npm i
+```
+
+可以解决，原因未知。
+
 # [在我的 Blog 查看完整介绍](https://drkbl.com/react-hello-world/)
 
 # React
