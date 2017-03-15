@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 moment.locale('zh-cn');
-import { DatePicker } from 'antd';
-import 'antd/dist/antd.css';
+import DatePicker from 'antd/lib/date-picker';
+import 'antd/lib/date-picker/style/css';
 import './style.css';
 
 function disabledDate(current) {
