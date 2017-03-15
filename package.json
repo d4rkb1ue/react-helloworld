@@ -11,8 +11,11 @@
   "author": "d4rkb1ue",
   "license": "ISC",
   "dependencies": {
+    "antd": "^2.8.1",
+    "css-loader": "^0.27.3",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "style-loader": "^0.14.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
