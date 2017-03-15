@@ -7,6 +7,15 @@
 - Webpack 前端资源加载/打包工具，满足前端工程化需要
 - antd-react 使用 Ant Design UI 库的 React 实现
 
+# 运行指南
+
+```
+$ git clone https://github.com/d4rkb1ue/react-helloworld.git
+$ cd react-helloworld
+$ npm i
+$ npm run test
+```
+
 # [在我的 Blog 查看完整介绍](https://drkbl.com/react-hello-world/)
 
 # React
