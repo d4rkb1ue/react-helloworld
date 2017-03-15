@@ -1,8 +1,19 @@
-# React Start
+# 介绍
+
+从零开始构建一个前端脚手架，技术栈：
+
+- React 为数据提供渲染为 HTML 的视图的开源 JavaScript 库
+- Babel 是一个 JavaScript 编译器，用于转化 ES2015/JSX 代码
+- Webpack 前端资源加载/打包工具，满足前端工程化需要
+- antd-react 使用 Ant Design UI 库的 React 实现
+
+# [在我的 Blog 查看完整介绍](https://drkbl.com/react-hello-world/)
+
+# React
 
 React 可以在浏览器运行，也可以在服务器运行。
 
-# 在浏览器中运行
+## 在浏览器中运行
 ```html
 <!DOCTYPE html>
 <html>
@@ -42,7 +53,7 @@ $ babel src --out-dir build
 上面命令可以将 src 子目录的 js 文件进行语法转换，转码后的文件全部放在 build 子目录。
 
 
-# 服务器端运行
+## 服务器端运行
 
 ```
 $ npm init
@@ -191,9 +202,10 @@ $ npm install --save-dev webpack-dev-server
 ```
 
 
+
 ## Babel-loader 和 Hello World! by React
 
-因为 Webpack 本身只支持 JavaScript ，为了让它支持 React ， 需要安装 Babel-loader 以编译 React 的 JSX 文件。 loader 是 Webpack 的一个机制。
+因为 Webpack 本身只支持 JavaScript ，为了让它支持 React ， 需要安装 Babel-loader 以编译 React 的 JSX 文件。loader 是 Webpack 的一个机制。
 
 创建 `./main.jsx` ，
 ```
@@ -205,6 +217,18 @@ ReactDOM.render(
   document.querySelector('#main')
 );
 ```
+
+```js
+const React = require('react');
+const ReactDOM = require('react-dom');
+```
+
+是 ES5 的写法，我们可以用 ES2015 的写法代替之（反正有 babel），
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+```
+
 
 安装，
 ```
@@ -238,6 +262,70 @@ module.exports = {
 
 HTML 文件无需修改，依然执行 `npm run test` 即可运行 React 版的 Hello World!
 
+## 添加 CSS 支持
+
+我们需要额外安装 loader 来支持 CSS
+
+```
+npm i --save css-loader style-loader
+```
+
+添加一个 loader ，
+```js
+module: {
+    loaders: [
+    {
+      test: /\.js[x]?$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: {
+        presets: ['es2015', 'react']
+      }
+    },
+    {
+      test: /\.css$/, 
+      loader: 'style-loader!css-loader' 
+    },]
+  }
+};
+```
+
+以加入 [antd/DatePicker](https://ant.design/docs/react/introduce-cn) 为例，在 `main.jsx` 中载入 CSS 文件，还有 DatePicker（日期选择器） 组件，
+```js
+import DatePicker from 'antd/lib/date-picker';  // 加载 JS
+import 'antd/lib/date-picker/style/css';        // 加载 CSS
+```
+
+再修改 HTML 添加 DatePicker（日期选择器）的占位，
+```html
+<div id="antd"></div>
+<script src="bundle.js" charset="utf-8"></script>
+```
+
+继续修改 `main.jsx` ，加入渲染，
+```js
+ReactDOM.render(
+  <DatePicker />,
+  document.querySelector('#antd')
+);
+```
+
+执行渲染，查看结果～
+
+`DatePicker` 是一个 React 组件类，像插入普通 HTML 标签一样，在网页中插入这个组件。所有组件类都必须有自己的 render 方法，用于输出组件。就像这样，
+
+```
+var HelloMessage = React.createClass({
+  render: function() {
+    return <h1>Hello {this.props.name}</h1>;
+  }
+});
+```
+
+---
+
+*让 Sublime 支持 JSX 的渲染，可以用 [babel-sublime](https://github.com/babel/babel-sublime) 解决，安装后设置 syntax 为 `JavaScript(Babel)`*
+
 
 ---
 # Reference
@@ -245,3 +333,6 @@ HTML 文件无需修改，依然执行 `npm run test` 即可运行 React 版的 
 - [npm scripts 使用指南](http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html)
 - [Webpack Getting-started](http://webpack.github.io/docs/tutorials/getting-started/)
 - [ruanyf/webpack-demos](https://github.com/ruanyf/webpack-demos)
+- [Ant Design of React](https://ant.design/docs/react/introduce-cn)
+- []http://www.ruanyifeng.com/blog/2015/03/react.html
+- [Moment.js](http://momentjs.com)
