@@ -10,9 +10,6 @@ import './style.css';
 
 function disabledDate(current) {
   // can not select days before today and after 2017-08-31
-  // if (!current) return true
-  // if (current.valueOf() < new Date( Date.now() - 24*60*60*1000 )) return true;
-  // if (current.valueOf() > new Date(2017, 8, 1)) return true; // 2017, 8, 1 === 2017.09.01
   return current && !(current.valueOf() > new Date( Date.now() - 24*60*60*1000 ) && current.valueOf() < new Date(2017, 8, 1));
 }
 function getWelcomeString() {
